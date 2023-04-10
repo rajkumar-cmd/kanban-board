@@ -6,7 +6,7 @@ const jwt=require("jsonwebtoken");
 const userRouter=express.Router();
 
 userRouter.post("/signup",async(req,res)=>{
-    const {email,password}=req.body;
+    const{email,password}=req.body;
     try{
         bcrypt.hash(password,5,async(err,hash)=>{
             if(err){
@@ -33,7 +33,7 @@ userRouter.post("/login",async(req,res)=>{
             bcrypt.compare(password,hash,(err,result)=>{
                 if(result){
                     const token=jwt.sign({userID:user[0]._id},"kanban");
-                    res.send({"msg":"login Successful","token":token});
+                    res.send({"msg":"Login Successful","token":token});
                 }else{
                     res.send({"msg":"error"})
                 }
