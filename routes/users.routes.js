@@ -12,7 +12,7 @@ userRouter.post("/signup",async(req,res)=>{
             if(err){
                 console.log(err);
             }else{
-                const user=new userModel({email:email,password:password})
+                const user=new userModel({email:email,password:hash})
                 await user.save();
                 console.log(user);
                 res.send({"msg":"Successfully Signedup"})
